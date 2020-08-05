@@ -42,7 +42,7 @@ describe("Fuzzy", () => {
   });
 
   test("should have a food level of ten if it is fed", function () {
-    jest.advanceTimersByTime(9001);
+    jest.advanceTimersByTime(10001);
     fuzzy.feed();
     expect(fuzzy.foodLevel).toEqual(10);
   });

@@ -2,8 +2,9 @@ import $ from 'jquery';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles.css';
+import { Tomagotchi } from "./../src/tomagotchi.js";
 
-let fuzzy = new HungryBear();
+let fuzzy = new Tomagotchi();
 let food = fuzzy.foodLevel;
 let rest = fuzzy.sleepLevel;
 let mood = fuzzy.moodLevel;

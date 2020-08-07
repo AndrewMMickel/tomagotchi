@@ -2,7 +2,7 @@ export class Tomagotchi {
     constructor(name) {
         this.name = name;
         this.foodLevel = 10;
-        this.sleepLevel = 30;
+        this.sleepLevel = 10;
         this.moodLevel = 0;
     }
 
@@ -12,8 +12,27 @@ export class Tomagotchi {
         setInterval(() => {
             if (this.foodLevel > 0) {
                 this.foodLevel--;
+                this.isAngry();
             }
         }, 1000);
+    }
+    
+    gettingTired() {
+        setInterval(() => {
+          if (this.sleepLevel > 0) {
+              this.sleepLevel--;
+              this.isAngry();
+          }
+        }, 10000);
+    }
+
+    isAngry() {
+    if (this.sleepLevel <= 0 || this.foodLevel <= 0) {
+        this.moodLevel++;
+        if (this.moodLevel >= 20) {
+            return "you die";
+          }
+        }
     }
 
     feed() {
@@ -24,43 +43,16 @@ export class Tomagotchi {
         return (this.sleepLevel += 10);
     }
 
-    gettingTired() {
-        setInterval(() => {
-            this.sleepLevel--;
-        }, 30000);
+    mood() {
+        return (this.moodLevel -= 10);
     }
 
-    isBearRested() {
-        if (this.sleepLevel === 0) {
-            this.gettingAngry();
+    isAngry() {
+        if (this.sleepLevel <= 0 || this.foodLevel <= 0) {
+            this.moodLevel++;
             if (this.moodLevel >= 20) {
                 return "you die";
             }
-        }
-        // if (this.sleepLevel === 0 ) {
-        //   this.moodLevel ++
-        // };
-    }
-
-    gettingAngry() {
-        setInterval(() => {
-            this.moodLevel++;
-        }, 1000);
-    }
-    love() {
-        return (this.moodLevel = 0);
-    }
-    // Static Methods //
-    didYouGetEaten() {
-        if (this.foodLevel > 0) {
-            return false;
-        } else if (this.foodLevel <= 0) {
-            return true;
-        }
-        if (this.moodLevel < 20) {
-            return false;
-        } else if (this.moodlevel >= 20) {
-            return true;
         }
     }
 }

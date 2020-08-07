@@ -7,52 +7,36 @@ import { Tomagotchi } from "./../src/tomagotchi.js";
 $(document).ready(function () {
     $('#start').click(function () {
         let fuzzy = new Tomagotchi();
-        let food = fuzzy.foodLevel;
-        let rest = fuzzy.sleepLevel;
-        let mood = fuzzy.moodLevel;
+        // let food = fuzzy.foodLevel;
+        // let rest = fuzzy.sleepLevel;
+        // let mood = fuzzy.moodLevel;
         
-        $('#food').text(fuzzy.foodLevel);
-        $("#rest").text(fuzzy.sleepLevel);
-        $("#love").text(fuzzy.moodLevel);
+        // $('#food').text(fuzzy.foodLevel);
+        // $("#rest").text(fuzzy.sleepLevel);
+        // $("#mood").text(fuzzy.moodLevel);
         
         setInterval(() => {
-            if (fuzzy.foodLevel > 0) {
-                fuzzy.foodLevel--;
-                $('#food').text(fuzzy.foodLevel)
-            }
+            $("#rest").text(fuzzy.sleepLevel);
+            $('#food').text(fuzzy.foodLevel);
+            $("#mood").text(fuzzy.moodLevel);
         }, 1000);
 
-        setInterval(() => {
-            fuzzy.sleepLevel--;
-            $("#rest").text(fuzzy.sleepLevel);
-        }, 20000);
+        fuzzy.gettingTired();
+        fuzzy.setHunger();        
 
-
-        $("#feed").click(function (event) {
-            event.preventDefault();
+        $("#feed").click(function () {
             fuzzy.feed();
             $('#food').text(fuzzy.foodLevel);
-
-            console.log(fuzzy.foodLevel);
-
         });
 
-        $("#sleep").click(function (event) {
-            event.preventDefault();
+        $("#sleep").click(function () {
             fuzzy.sleep();
             $("#rest").text(fuzzy.sleepLevel);
-
-            console.log(fuzzy.sleepLevel);
-
         });
 
-        $("#love").click(function (event) {
-            event.preventDefault();
+        $("#love").click(function () {
             fuzzy.mood();
             $("#mood").text(fuzzy.moodLevel);
-
-            console.log(fuzzy.moodLevel);
-
         });
     });
 });
